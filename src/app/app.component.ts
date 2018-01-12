@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatSidenavModule, MatSidenav} from '@angular/material/sidenav';
 
 @Component({
   selector: 'app-root',

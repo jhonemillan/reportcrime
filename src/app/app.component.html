@@ -1,10 +1,22 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-</div>
+<mat-toolbar color="primary">
+    <span>My Application</span>
+  </mat-toolbar>
+<mat-sidenav-container>
+    <mat-sidenav mode="side" opened="true">
+       sss
+    </mat-sidenav>
+    <mat-sidenav-content>
+      
+        <div>
+            <agm-map [latitude]="lat" [longitude]="lng">
+              <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+            </agm-map>
+        </div>
+    
+    
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+
+
 <!-- the component as the initial center of the map: -->
-<agm-map [latitude]="lat" [longitude]="lng">
-  <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
-</agm-map>
