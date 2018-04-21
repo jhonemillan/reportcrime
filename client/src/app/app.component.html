@@ -1,0 +1,56 @@
+
+<!doctype html>
+<html lang="en">
+  <body>
+      <mat-toolbar color="primary">    
+          <i class="material-icons" (click)="sidenav.toggle()">menu</i>    
+        </mat-toolbar>
+      <mat-sidenav-container>
+          <mat-sidenav #sidenav mode="side" [(opened)] = "opened">
+            <mat-list>
+                <mat-list-item>Item 1</mat-list-item>
+                <mat-divider></mat-divider>
+                <mat-list-item>Item 2</mat-list-item>
+                <mat-divider></mat-divider>
+                <mat-list-item>Item 3</mat-list-item>
+              </mat-list>
+          </mat-sidenav>
+          <mat-sidenav-content>
+            
+              <div>
+                  <agm-map [latitude]="lat" [longitude]="lng">
+                    <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+                  </agm-map>
+              </div>
+          
+          
+          </mat-sidenav-content>
+        </mat-sidenav-container> -->
+
+    
+  </body>
+</html>
+ 
+
+<!-- The content below is only a placeholder and can be replaced.
+<mat-toolbar color="primary">    
+    <i class="material-icons" (click)="sidenav.toggle()">menu</i>    
+  </mat-toolbar>
+<mat-sidenav-container>
+    <mat-sidenav #sidenav mode="side" [(opened)] = "opened">
+       Prueba de menu
+    </mat-sidenav>
+    <mat-sidenav-content>
+      
+        <div>
+            <agm-map [latitude]="lat" [longitude]="lng">
+              <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+            </agm-map>
+        </div>
+    
+    
+    </mat-sidenav-content>
+  </mat-sidenav-container> -->
+
+
+<!-- the component as the initial center of the map: -->

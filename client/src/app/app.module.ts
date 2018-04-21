@@ -6,8 +6,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { AgmCoreModule } from '@agm/core';
-import { key } from './apiconfig'
-import { FlexLayoutModule } from "@angular/flex-layout";
+import { key } from './apiconfig';
+import { FlexLayoutModule } from '@angular/flex-layout';
 import 'hammerjs';
 import {
   MatAutocompleteModule,
@@ -42,16 +42,19 @@ import {
   MatTooltipModule,
   MatStepperModule,
 } from '@angular/material';
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     MatToolbarModule,
     MatSidenavModule,
+    MatListModule,
     AgmCoreModule.forRoot({
       apiKey: key
     })
