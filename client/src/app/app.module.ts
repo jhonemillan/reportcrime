@@ -1,4 +1,4 @@
-
+import { AppRoutingModule } from './routing.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, ApplicationRef } from '@angular/core';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -44,6 +44,7 @@ import {
 } from '@angular/material';
 import { HomeComponent } from './components/home/home.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,10 +52,13 @@ import { HomeComponent } from './components/home/home.component';
   ],
   imports: [
     BrowserModule,
+    AppRoutingModule,
     BrowserAnimationsModule,
     MatToolbarModule,
     MatSidenavModule,
     MatListModule,
+    MatIconModule,
+    MatButtonModule,
     AgmCoreModule.forRoot({
       apiKey: key
     })
