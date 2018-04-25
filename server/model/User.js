@@ -6,29 +6,37 @@ const validator = require('node-mongoose-validator');
 var Schema = mongoose.Schema;
 
 var UserSchema = new Schema({
-    id: {type: String},
-    username: {type: String},
-    token:{type: String}      
+    twitter: {
+                id: {type: String},
+                username: {type: String},
+                token:{type: String}      
+            }    
   });
 
-  UserSchema.statics.findOrCreate = function(token, tokenSecret, profile, done){    
-    let User = this;    
-    return User.findOne({'id': profile.id}).then((user)=>{         
-        if(!user){            
+  UserSchema.statics.findOrCreate = function(token, tokenSecret, profile, done){ 
+      let User = this;   
+    return User.findOne({'twitter.id': profile.id}).then((u)=>{         
+        if(!u){                        
             let user = new User();
-            user.username = profile.username;
-            user.id = profile.id;
-            user.token = token;
+            user.twitter.username = profile.username;
+            user.twitter.id = profile.id;
+            user.twitter.token = token;
 
-            user.save(function(error, savedUser) {
-                if (error) {
-                      console.log(error);
+            user.save(function(err,usr){
+                debugger;
+                if(err){
+                   throw err;
                 }
-                return done(error, savedUser);
-          });
+                return done(null, usr);
+            })
+
+        }else{            
+            return done(null, u);
         }
 
-        done(null, user);
+    }).catch((e)=> {
+        console.log(e);
+       return done(e);
     });
 }
 

@@ -15,26 +15,26 @@ let db = require('./security/config')
 app.use(logger('dev'));
 app.use(cors());
 app.use(bodyparser.json());
-app.use(bodyparser.urlencoded({ extended: false }));
+app.use(bodyparser.urlencoded({ extended: true }));
 app.use(helmet());
 app.use(express.static(path.join(__dirname, '../client/dist')));
 
-app.use(express.static("public"));
-app.use(exsession({ secret: "cats", saveUninitialized: true, resave: true }));
+
+app.use(exsession({ secret: "victoria", 
+                    saveUninitialized: true, 
+                    resave: true }));
+                    
 app.use(passport.initialize());
 app.use(passport.session());  
 twitterPassport(passport);
 mongoose.connect('mongodb://localhost/geocrimes');
 
-app.get('*', (req, res)=>{
-    res.send('client/dist/index.html');
-});
-
 app.get('/auth/twitter', passport.authenticate('twitter'));
 
 app.get('/auth/twitter/callback',
   passport.authenticate('twitter', { successRedirect: '/',
-                                      failureRedirect: '/login' }));
+                                      failureRedirect: '/mal',
+                                      failureFlash: true }));
 
 
 app.listen(port, ()=>{

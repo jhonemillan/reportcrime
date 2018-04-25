@@ -43,6 +43,7 @@ import {
   MatStepperModule,
 } from '@angular/material';
 import { HomeComponent } from './components/home/home.component';
+// import { MapComponent } from './components/map/map.component';
 
 
 @NgModule({
