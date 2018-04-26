@@ -20,54 +20,50 @@ app.use(bodyparser.urlencoded({ extended: true }));
 app.use(helmet());
 app.use(express.static(path.join(__dirname, '../client/dist')));
 
+
 var store = new MongoDBStore(
     {
       uri: db.database,
       databaseName: 'geocrimes',
-      collection: 'Sessions'
+      collection: 'sessions'
     });
 
+app.use(passport.initialize());
 app.use(exsession({ secret: db.secretApp, 
                     saveUninitialized: true, 
                     store: store,
-                    resave: true }));
-                    
-app.use(passport.initialize());
-app.use(passport.session());  
+                    cookie: {
+                        secure: false,
+                        maxage: 6000000
+                    },
+                    resave: true }));                    
+
 twitterPassport(passport);
 mongoose.connect(db.database);
 
+// file:app/authentication/middleware.js
+function authenticationMiddleware () {
+    return function (req, res, next) {
+      if (req.isAuthenticated()) {
+        return next()
+      }
+      res.render('/');
+    }
+  }
+
 app.get('/auth/twitter', passport.authenticate('twitter'));
+
 
 app.get('/auth/twitter/callback',
   passport.authenticate('twitter', { successRedirect: '/',
-                                      failureRedirect: '/mal',
+                                      failureRedirect: '/login',
                                       failureFlash: true }));
 
 app.get('/logout', function (req, res){
-  req.session.destroy(function (err) {
-      if (err) {
-          console.log(err);
-      }
-    res.redirect('/'); //Inside a callback… bulletproof!
-  });
-  req.session = null
+  req.session.destroy();      
+  req.logOut();
+  res.send('fuera');
 });
-
-function ensureAuthenticated(req, res, next) {
-    console.log(req.user);
-    if (req.authenticated()) {
-      
-      return next(); 
-    }
-  
-    // denied. redirect to login
-    res.redirect('/')
-  }
-
-app.get('/test',ensureAuthenticated, (req, res)=>{
-console.log('si puedo entrar')
-})
 
 app.listen(port, ()=>{
     console.log('Se conecta al puerto ' + port)

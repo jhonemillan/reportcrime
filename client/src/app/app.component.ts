@@ -13,26 +13,9 @@ import {MatListModule} from '@angular/material/list';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app';
-  lat = 0;
-  lng = 0;
-  @ViewChild('gmap') gmapElement: any;
-  map: google.maps.Map;
-  opened;
-
+  
   // tslint:disable-next-line:use-life-cycle-interface
   ngOnInit() {
-    this.findMe();
-  }
-
-  findMe() {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition((position) => {
-        this.lat = position.coords.latitude;
-        this.lng = position.coords.longitude;
-      });
-    } else {
-      alert('Geolocation is not supported by this browser.');
-    }
+    
   }
 }
