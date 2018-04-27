@@ -5,7 +5,6 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
-import { AgmCoreModule } from '@agm/core';
 import { key } from './apiconfig';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import 'hammerjs';
@@ -43,7 +42,7 @@ import {
   MatStepperModule,
 } from '@angular/material';
 import { HomeComponent } from './components/home/home.component';
-// import { MapComponent } from './components/map/map.component';
+import { AgmCoreModule } from '@agm/core';
 
 
 @NgModule({

@@ -8,26 +8,15 @@ import { } from '@types/googlemaps';
   styleUrls: ['./map.component.css']
 })
 export class MapComponent implements OnInit {
-  
-  title = 'app';
+
+  title = 'Add point';
   lat = 0;
   lng = 0;
-  @ViewChild('gmap') gmapElement: any;
-  map: google.maps.Map;
 
   constructor() { }
 
   ngOnInit() {
     this.findMe();
-  }
-
-  renderPoint(){
-    var mapProp = {
-      center: new google.maps.LatLng(this.lat, this.lng),
-      zoom: 15,
-      mapTypeId: google.maps.MapTypeId.ROADMAP
-    };
-    this.map = new google.maps.Map(this.gmapElement.nativeElement, mapProp);
   }
 
   findMe() {
@@ -39,6 +28,10 @@ export class MapComponent implements OnInit {
     } else {
       alert('Geolocation is not supported by this browser.');
     }
+  }
+
+  AddPoint($event) {
+    console.log($event.coords);
   }
 
 }

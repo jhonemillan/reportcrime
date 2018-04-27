@@ -13,9 +13,8 @@ import {MatListModule} from '@angular/material/list';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  
   // tslint:disable-next-line:use-life-cycle-interface
   ngOnInit() {
-    
+
   }
 }
